@@ -1,0 +1,45 @@
+---
+import {
+    User,
+    FolderCode,
+    House,
+    Cpu,
+    BriefcaseBusiness,
+    Mail,
+} from "@lucide/astro";
+
+import { merge_styles } from '../utils/merge-styles'
+
+const navItems = [
+    { name: "/", href: "/", icon: House },
+    { name: "/projects", href: "/projects", icon: FolderCode },
+    { name: "/skills", href: "/skills", icon: Cpu },
+    { name: "/experience", href: "/experience", icon: BriefcaseBusiness },
+    { name: "/about", href: "/about", icon: User },
+    { name: "/contact", href: "/contact", icon: Mail },
+];
+
+const pathName = Astro.url.pathname
+---
+
+<aside
+    id="sidebar"
+    class="fixed bg-[#25282a] inset-y-0 left-0 z-50 w-64 border-r border-black transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0"
+>
+    <div class="p-5 font-mono">
+        <h1 class="text-2xl font-bold text-[#FFFFF0] px-3">Portfolio</h1>
+        <nav class="mt-10 space-y-1">
+            {
+                navItems.map((item) => (
+                    <a
+                        href={item.href}
+                        class={merge_styles("flex items-center gap-3 px-3 py-2 hover:bg-[#393e42] hover:text-[#FFFF30] rounded-lg transition-colors", pathName === item.href ? "text-[#FFFF30]" : "text-[#FFFFF0]")}
+                    >
+                        <item.icon size={20} />
+                        <span class="font-medium">{item.name}</span>
+                    </a>
+                ))
+            }
+        </nav>
+    </div>
+</aside>
