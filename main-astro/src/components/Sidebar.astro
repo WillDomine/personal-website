@@ -6,10 +6,11 @@ import {
     Cpu,
     BriefcaseBusiness,
     Mail,
-    Menu
+    Menu,
+    X
 } from "@lucide/astro";
 
-import { merge_styles } from '../utils/merge-styles'
+import { merge_styles } from "../utils/merge-styles";
 
 const navItems = [
     { name: "/", href: "/", icon: House },
@@ -20,23 +21,47 @@ const navItems = [
     { name: "/contact", href: "/contact", icon: Mail },
 ];
 
-const pathName = Astro.url.pathname
+const pathName = Astro.url.pathname;
 ---
+
+<div class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-[#25282a] border-b border-black flex items-center justify-between px-6 z-[60]">
+    <h1 class="font-mono font-bold text-[#FFFFF0] text-lg tracking-tighter">Portfolio</h1>
+    <button 
+        id="menu-toggle" 
+        class="text-[#FFFFF0] p-2 hover:bg-[#393e42] rounded-lg transition-colors"
+    >
+        <Menu size={24} />
+    </button>
+</div>
+
+<div 
+    id="sidebar-overlay" 
+    class="fixed inset-0 bg-black/70 z-[40] hidden lg:hidden transition-opacity"
+></div>
 
 <aside
     id="sidebar"
-    class="fixed bg-[#25282a] inset-y-0 left-0 z-50 w-64 border-r border-black transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0"
+    class="fixed lg:sticky top-0 left-0 z-[50] w-64 h-screen bg-[#25282a] border-r border-black transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0"
 >
-    <div class="p-5 font-mono">
-        <div class="flex text-2xl font-bold text-[#FFFFF0] px-3">
+    <div class="p-5 font-mono h-full flex flex-col">
+        <div class="flex items-center justify-between text-2xl font-bold text-[#FFFFF0] px-3">
             <h1>Portfolio</h1>
+            <button id="close-sidebar" class="lg:hidden text-slate-400 hover:text-white">
+                <X size={24} />
+            </button>
         </div>
+        
         <nav class="mt-10 space-y-1">
             {
                 navItems.map((item) => (
                     <a
                         href={item.href}
-                        class={merge_styles("flex items-center gap-3 px-3 py-2 hover:bg-[#393e42] hover:text-[#FFFF30] rounded-lg transition-colors", pathName === item.href ? "text-[#FFFF30]" : "text-[#FFFFF0]")}
+                        class={merge_styles(
+                            "flex items-center gap-3 px-3 py-2 hover:bg-[#393e42] hover:text-[#FFFF30] rounded-lg transition-colors",
+                            pathName === item.href
+                                ? "text-[#FFFF30] bg-[#393e42]/40"
+                                : "text-[#FFFFF0]",
+                        )}
                     >
                         <item.icon size={20} />
                         <span class="font-medium">{item.name}</span>
@@ -46,3 +71,42 @@ const pathName = Astro.url.pathname
         </nav>
     </div>
 </aside>
+
+<script is:inline>
+    function setupSidebar() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeToggle = document.getElementById('close-sidebar');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        if (!menuToggle || !sidebar || !overlay) return;
+
+        function open() {
+            sidebar.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function close() {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        menuToggle.addEventListener('click', open);
+        if (closeToggle) closeToggle.addEventListener('click', close);
+        overlay.addEventListener('click', close);
+
+        // Auto-close on link click (mobile)
+        const links = sidebar.querySelectorAll('a');
+        links.forEach(l => l.addEventListener('click', () => {
+            if (window.innerWidth < 1024) close();
+        }));
+    }
+
+    // Run on initial load
+    setupSidebar();
+    
+    // Run on Astro page navigation (if using View Transitions)
+    document.addEventListener('astro:after-swap', setupSidebar);
+</script>

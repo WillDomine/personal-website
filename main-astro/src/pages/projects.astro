@@ -4,33 +4,77 @@ import { projects } from "../utils/projects";
 import ProjectCard from "../components/ProjectCard.astro";
 ---
 
-<Layout>
-    <main class="max-w-7xl mx-auto px-4 py-0">
-        <header class="mb-10 border-b border-slate-400 pb-8">
-            <div class="flex items-center gap-1 font-mono text-xs text-slate-400 mb-2">
-                <span>~/portfolio</span>
-                <span class="text-[#FFFF30]">/projects</span>
+<Layout >
+    <main class="max-w-7xl mt-15 lg:mt-0">
+        
+        <header class="mb-10 border-b border-white/10 pb-10">
+            <div class="flex items-center gap-2 font-mono text-[11px] text-slate-400 mb-4 tracking-widest uppercase">
+                <span>root</span><span>/</span>
+                <span>var</span><span>/</span>
+                <span class="text-[#FFFF30] font-bold">repositories</span>
             </div>
-            <h1 class="text-3xl font-bold text-[#FFFFF0] font-mono">
-                ls <span class="text-[#FFFF30] opacity-70">-all</span>
-            </h1>
-            <p class="text-slate-400 font-mono text-[10px] mt-4 uppercase tracking-widest">
-                // Found {projects.length} matching_entries
-            </p>
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <h1 class="text-4xl font-black text-white font-mono tracking-tighter uppercase mb-2">
+                        Project_Index<span class="text-[#FFFF30] animate-pulse">_</span>
+                    </h1>
+                    <p class="text-slate-400 font-mono text-xs max-w-xl leading-relaxed">
+                        <span class="text-[#FFFF30] font-bold">//</span> ls -all: Found {projects.length} matching entries in current_build. 
+                        Displaying source code links and deployment status.
+                    </p>
+                </div>
+
+                <div class="hidden md:grid grid-cols-2 gap-x-8 gap-y-2 border-l border-white/10 pl-6 font-mono text-[10px] uppercase">
+                    <div class="flex flex-col">
+                        <span class="text-[#FFFF30]">Access</span>
+                        <span class="text-white">Public_Read</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[#FFFF30]">Protocol</span>
+                        <span class="text-white">SSH/HTTPS</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[#FFFF30]">Environment</span>
+                        <span class="text-white">Staging_v4</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[#FFFF30]">Sync</span>
+                        <span class="text-white">Active_0ms</span>
+                    </div>
+                </div>
+            </div>
         </header>
 
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-12">
             {
-                projects.map((project) => (
-                    <ProjectCard {...project} />
+                projects.map((project, index) => (
+                    <div class="relative group">
+                        <span class="absolute -top-4 -left-2 font-mono text-[10px] text-zinc-700 z-10">
+                            ID: 00{index + 1}
+                        </span>
+                        <ProjectCard {...project} />
+                    </div>
                 ))
             }
         </div>
 
-        <div class="mt-15 text-center border-t border-slate-400 pt-10">
-             <p class="font-mono text-[10px] text-slate-400 italic">
-                [ End of directory reached ]
-             </p>
+        <div class="mt-10 border-t border-white/10 pt-10">
+            <div class="flex flex-col gap-4">
+                <div class="flex items-center gap-3 font-mono text-sm">
+                    <span class="text-green-500">➜</span>
+                    <span class="text-[#FFFF30]">~</span>
+                    <span class="text-white">cd ..</span>
+                    <span class="w-2 h-5 bg-[#FFFF30] animate-pulse"></span>
+                </div>
+                
+                <div class="flex flex-wrap justify-between items-center gap-4">
+                    <p class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">
+                        // END_OF_TRANSMISSION: All repositories synced.
+                    </p>
+                    
+                </div>
+            </div>
         </div>
     </main>
 </Layout>

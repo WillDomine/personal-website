@@ -1,11 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Github, Linkedin, Mail } from "@lucide/astro";
+import { Github, Linkedin, Mail, FileDown } from "@lucide/astro";
 const form_api = import.meta.env.EMAIL_ENDPOINT;
 ---
 
 <Layout>
-    <main class="max-w-3xl">
+    <main class="max-w-5xl mt-15 lg:mt-0">
         <div
             class="flex items-center gap-2 font-mono text-[11px] text-slate-400 mb-4 tracking-widest uppercase"
         >
@@ -20,7 +20,7 @@ const form_api = import.meta.env.EMAIL_ENDPOINT;
             Initialize_Link<span class="text-[#FFFF30] animate-pulse">_</span>
         </h1>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
             <a
                 href="https://github.com/WillDomine"
                 target="_blank"
@@ -71,6 +71,23 @@ const form_api = import.meta.env.EMAIL_ENDPOINT;
                 <span
                     class="text-[10px] font-mono text-slate-400 group-hover:text-[#FFFF30]"
                     >willdomine1@outlook.com</span
+                >
+            </a>
+            <a
+                href="/Will_Domine_2026.pdf"
+                target="_blank"
+                class="flex items-center justify-between p-3 bg-[#1a1c1e] border border-white/5 rounded-lg group hover:border-[#FFFF30]/50 transition-all"
+            >
+                <div class="flex items-center gap-3">
+                    <FileDown size={16} class="text-[#FFFF30]" />
+                    <span
+                        class="font-mono text-xs text-slate-300 group-hover:text-white"
+                        >Resume</span
+                    >
+                </div>
+                <span
+                    class="text-[10px] font-mono text-slate-400 group-hover:text-[#FFFF30]"
+                    >Will_Domine_2026.pdf</span
                 >
             </a>
         </div>
