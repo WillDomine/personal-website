@@ -1,7 +1,36 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import { projects } from "../utils/projects";
+import ProjectCard from "../components/ProjectCard.astro";
 ---
 
 <Layout>
-	
+    <main class="max-w-7xl mx-auto px-4 py-0">
+        <header class="mb-12 border-b border-white/5 pb-8">
+            <div class="flex items-center gap-2 font-mono text-xs text-slate-400 mb-2">
+                <span>~/portfolio</span>
+                <span class="text-[#FFFF30]">/projects</span>
+            </div>
+            <h1 class="text-3xl font-bold text-[#FFFFF0] font-mono">
+                ls <span class="text-[#FFFF30] opacity-70">-all</span>
+            </h1>
+            <p class="text-slate-400 font-mono text-[10px] mt-4 uppercase tracking-widest">
+                // Found {projects.length} matching_entries
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-12">
+            {
+                projects.map((project) => (
+                    <ProjectCard {...project} />
+                ))
+            }
+        </div>
+
+        <div class="mt-20 text-center border-t border-white/5 pt-10">
+             <p class="font-mono text-[10px] text-slate-400 italic">
+                [ End of directory reached ]
+             </p>
+        </div>
+    </main>
 </Layout>

@@ -1,7 +1,8 @@
 ---
-import '../styles/global.css'
-import Sidebar from '../components/Sidebar.astro'
+import "../styles/global.css";
+import Sidebar from "../components/Sidebar.astro";
 ---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -12,10 +13,13 @@ import Sidebar from '../components/Sidebar.astro'
 		<title>Astro Basics</title>
 	</head>
 	<body class="bg-[#393e42]">
-		<div class="flex min-h-screen">
+		<div class="flex min-h-screen min-w-screen">
 			<Sidebar />
-			<slot />
+			<main class="flex-1 min-w-0 h-screen overflow-y-auto">
+				<div class="max-w-7xl mx-auto p-6 lg:p-12">
+					<slot />
+				</div>
+			</main>
 		</div>
 	</body>
 </html>
-

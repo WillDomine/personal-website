@@ -1,7 +1,56 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import { projects } from "../utils/projects";
+import ProjectCard from "../components/ProjectCard.astro";
 ---
 
 <Layout>
-	
+	<section class="space-y-6 py-0">
+		<div class="space-y-2">
+			<p
+				class="text-[#FFFF30] font-bold tracking-widest text-sm uppercase"
+			>
+				// Initializing contact...
+			</p>
+			<h1
+				class="text-5xl lg:text-7xl font-bold text-[#FFFFF0] tracking-tighter"
+			>
+				Will Domine<span class="text-[#FFFF30]">.</span>
+			</h1>
+			<p class="text-xl text-slate-400 max-w-2xl leading-relaxed">
+				A <span class="text-[#FFFFF0]">Full-Stack Developer</span> crafting
+				high-performance applications with a focus on clean, maintainable
+				code.
+			</p>
+		</div>
+
+		<div class="flex gap-4 pt-4">
+			<a
+				href="/projects"
+				class="bg-[#FFFF30] hover:bg-[#FFE000] text-[#25282a] px-6 py-3 rounded-lg font-bold transition-all"
+			>
+				view_work()
+			</a>
+			<a
+				href="/contact"
+				class="bg-[#25282a] hover:bg-[#393e42] text-[#FFFFF0] px-6 py-3 rounded-lg font-bold transition-all"
+			>
+				contact_me()
+			</a>
+		</div>
+		<div class="block mt-10">
+			<p
+				class="text-[#FFFF30] font-bold tracking-widest text-sm uppercase"
+			>
+				// Featured Projects
+			</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mt-5">
+				{
+					projects.filter(project => project.featured).map((project) => (
+						<ProjectCard title={project.title} description={project.description} image={project.image} github_link={project.github_link} website_link={project.website_link} tech={project.tech} featured={project.featured} completed={project.completed} />
+					))
+				}
+			</div>
+		</div>
+	</section>
 </Layout>

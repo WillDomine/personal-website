@@ -1,7 +1,44 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import { categories } from "../utils/skills";
 ---
 
 <Layout>
-	
+    <section class="max-w-6xl mx-auto">
+        <div class="mb-12">
+            <h1
+                class="font-mono text-3xl text-[#FFFFF0] flex items-center gap-3"
+            >
+                <span class="text-[#FFFF30]">/</span>bin/capabilities
+            </h1>
+            <p class="font-mono text-slate-400 mt-2 text-sm">
+                // system_scan_complete: 27 dependencies found
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {
+                categories.map((cat) => (
+                    <div class="bg-[#25282a] border border-white/5 p-6 rounded-2xl hover:border-[#FFFF30]/20 transition-all group">
+                        <div class="mb-4">
+                            <p class="font-mono text-[10px] text-[#FFFF30] mb-1">
+                                {cat.comment}
+                            </p>
+                            <h2 class="font-mono text-[#FFFFF0] text-lg font-bold">
+                                {cat.group}
+                            </h2>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            {cat.items.map((skill) => (
+                                <span class="px-3 py-1 bg-[#393e42] text-[#FFFFF0] font-mono text-[11px] rounded-md border border-white/5 group-hover:border-[#FFFF30]/10 transition-colors">
+                                    {skill}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
 </Layout>
