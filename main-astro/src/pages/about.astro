@@ -1,7 +1,101 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	
+  <main class="max-w-4xl">
+    <header class="mb-10 border-b border-white/10 pb-10">
+      <div class="flex items-center gap-2 font-mono text-[11px] text-slate-400 mb-4 tracking-widest uppercase">
+        <span>root</span><span class="text-slate-400">/</span>
+        <span>users</span><span class="text-slate-400">/</span>
+        <span class="text-[#FFFF30] font-bold">will_domine.md</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <h1 class="text-4xl font-black text-white font-mono tracking-tighter uppercase mb-2">
+            Profile_Init<span class="text-[#FFFF30] animate-pulse">_</span>
+          </h1>
+          <p class="text-slate-400 font-mono text-xs max-w-xl">
+            <span class="text-[#FFFF30] font-bold">//</span> Senior @ UW-Whitewater | Cybersecurity Minor
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-y-2 border-l border-white/10 pl-6 font-mono text-[10px] uppercase">
+          <div class="flex flex-col">
+            <span class="text-[#FFFF30]">Class</span>
+            <span class="text-white">Dec_2026_Graduate</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-[#FFFF30]">Level</span>
+            <span class="text-white">Lvl_4_CS_Senior</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div class="lg:col-span-2 space-y-9">
+        
+        <section>
+          <h2 class="text-[#FFFF30] font-mono text-sm mb-4 uppercase tracking-widest">{">"} main_biography</h2>
+          <div class="bg-[#1a1c1e] p-6 rounded-2xl border border-white/5 space-y-5 font-mono text-sm leading-relaxed">
+            <p class="text-slate-300">
+              Passionate about computer science and the mechanics of <span class="text-white">backend architecture</span>. I focus on building systems that are not only functional but optimized for security and performance.
+            </p>
+            <p class="text-slate-300">
+              I am currently pursuing a <span class="text-white font-bold">B.S. in Computer Science</span> with a <span class="text-[#FFFF30]">Minor in Cybersecurity</span>. This combination allows me to view software development through a defensive lens—ensuring code is robust from the first line.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <div class="p-6 bg-black/40 border border-[#FFFF30]/10 rounded-2xl font-mono relative overflow-hidden">
+             <span class="absolute top-2 right-4 text-[10px] text-slate-400">FUN_FACT.log</span>
+             <p class="text-xs text-slate-400 mb-2">// session_start: age_14</p>
+             <p class="text-sm text-white">
+                <span class="text-[#FFFF30]">$</span> grep "passion" willpower.sh
+             </p>
+             <p class="text-slate-300 mt-2">
+                Started coding in <span class="text-[#FFFF30]">Python</span> at 14. 
+                System status: <span class="text-green-500">Hooked_Ever_Since.</span>
+             </p>
+          </div>
+        </section>
+      </div>
+
+      <aside class="space-y-8">
+        <div class="bg-[#111] border border-white/5 p-6 rounded-2xl">
+          <h3 class="text-white font-mono text-[10px] font-bold mb-6 border-b border-white/10 pb-2 uppercase tracking-widest text-center">
+            Academic_Specs
+          </h3>
+          <ul class="space-y-6 font-mono text-[11px]">
+            <li>
+              <span class="text-[#FFFF30] block mb-1">UNIVERSITY</span>
+              <span class="text-slate-400">UW-Whitewater</span>
+            </li>
+            <li>
+              <span class="text-[#FFFF30] block mb-1">MAJOR</span>
+              <span class="text-slate-400">Computer Science</span>
+            </li>
+            <li>
+              <span class="text-[#FFFF30] block mb-1">MINOR</span>
+              <span class="text-slate-400">Cybersecurity</span>
+            </li>
+            <li>
+              <span class="text-[#FFFF30] block mb-1">EXPECTED</span>
+              <span class="text-slate-400">December 2026</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-[#FFFF30]/5 border border-[#FFFF30]/20 p-4 rounded-xl">
+           <p class="text-[10px] font-mono text-[#FFFF30] mb-2 uppercase font-bold">Inquiry_Link</p>
+           <p class="text-[11px] font-mono text-slate-400 leading-tight">
+             Interested in collaboration? Check the <a href="/contact" class="text-white underline">Contact</a> page to initialize a handshake.
+           </p>
+        </div>
+      </aside>
+    </div>
+  </main>
 </Layout>

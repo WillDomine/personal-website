@@ -1,7 +1,159 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import { Github, Linkedin, Mail } from "@lucide/astro";
+const form_api = import.meta.env.EMAIL_ENDPOINT;
 ---
 
 <Layout>
-	
+    <main class="max-w-3xl">
+        <div
+            class="flex items-center gap-2 font-mono text-[11px] text-slate-400 mb-4 tracking-widest uppercase"
+        >
+            <span>root</span><span>/</span>
+            <span>bin</span><spa>/</span>
+            <span class="text-[#FFFF30] font-bold">contact_protocol</span>
+        </div>
+
+        <h1
+            class="text-4xl font-black text-white font-mono tracking-tighter uppercase mb-6"
+        >
+            Initialize_Link<span class="text-[#FFFF30] animate-pulse">_</span>
+        </h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+            <a
+                href="https://github.com/WillDomine"
+                target="_blank"
+                class="flex items-center justify-between p-3 bg-[#1a1c1e] border border-white/5 rounded-lg group hover:border-[#FFFF30]/50 transition-all"
+            >
+                <div class="flex items-center gap-3">
+                    <Github size={16} class="text-[#FFFF30]" />
+                    <span
+                        class="font-mono text-xs text-slate-300 group-hover:text-white"
+                        >GitHub</span
+                    >
+                </div>
+                <span
+                    class="text-[10px] font-mono text-slate-400 group-hover:text-[#FFFF30]"
+                    >/WillDomine</span
+                >
+            </a>
+
+            <a
+                href="https://linkedin.com/in/will-domine"
+                target="_blank"
+                class="flex items-center justify-between p-3 bg-[#1a1c1e] border border-white/5 rounded-lg group hover:border-[#FFFF30]/50 transition-all"
+            >
+                <div class="flex items-center gap-3">
+                    <Linkedin size={16} class="text-[#FFFF30]" />
+                    <span
+                        class="font-mono text-xs text-slate-300 group-hover:text-white"
+                        >LinkedIn</span
+                    >
+                </div>
+                <span
+                    class="text-[10px] font-mono text-slate-400 group-hover:text-[#FFFF30]"
+                    >/willdomine</span
+                >
+            </a>
+
+            <a
+                href="mailto:willdomine1@outlook.com"
+                class="flex items-center justify-between p-3 bg-[#1a1c1e] border border-white/5 rounded-lg group hover:border-[#FFFF30]/50 transition-all"
+            >
+                <div class="flex items-center gap-3">
+                    <Mail size={16} class="text-[#FFFF30]" />
+                    <span
+                        class="font-mono text-xs text-slate-300 group-hover:text-white"
+                        >Email</span
+                    >
+                </div>
+                <span
+                    class="text-[10px] font-mono text-slate-400 group-hover:text-[#FFFF30]"
+                    >willdomine1@outlook.com</span
+                >
+            </a>
+        </div>
+
+        <hr class="border-white/5 mb-5" />
+
+        <p class="text-slate-400 font-mono text-xs leading-relaxed mb-5">
+            <span class="text-[#FFFF30] font-bold">//</span> Or use the web_interface
+            to send a direct data packet:
+        </p>
+
+        <form action={form_api} method="POST" class="space-y-5 font-mono">
+            <div class="group">
+                <label
+                    class="block text-slate-400 text-[10px] uppercase tracking-widest mb-2"
+                    >01. RETURN_ADDR</label
+                >
+                <div
+                    class="flex items-center gap-3 bg-[#1a1c1e] border border-white/5 p-4 rounded-xl focus-within:border-[#FFFF30]/50 transition-all"
+                >
+                    <span class="text-[#FFFF30] text-sm">email:</span>
+                    <input
+                        name="email"
+                        type="email"
+                        placeholder='"handshake@domain.com"'
+                        class="bg-transparent border-none outline-none text-white text-sm w-full placeholder:text-zinc-700"
+                    />
+                </div>
+            </div>
+
+            <div class="group">
+                <label
+                    class="block text-slate-400 text-[10px] uppercase tracking-widest mb-2"
+                    >02. DATA_PAYLOAD</label
+                >
+                <div
+                    class="bg-[#1a1c1e] border border-white/5 p-4 rounded-xl focus-within:border-[#FFFF30]/50 transition-all"
+                >
+                    <div class="text-[#FFFF30] text-sm mb-2">
+                        message: <span class="text-zinc-600">{"{"}</span>
+                    </div>
+                    <textarea
+                        name="message"
+                        rows="4"
+                        placeholder="Request connection..."
+                        class="bg-transparent border-none outline-none text-white text-sm w-full placeholder:text-zinc-700 resize-none"
+                    ></textarea>
+                    <div class="text-zinc-600 text-sm">{"}"}</div>
+                </div>
+            </div>
+
+            <div class="group">
+                <label
+                    class="block text-slate-400 text-[10px] uppercase tracking-widest mb-2"
+                    >03. IDENT_SENDER</label
+                >
+                <div
+                    class="flex items-center gap-3 bg-[#1a1c1e] border border-white/5 p-4 rounded-xl focus-within:border-[#FFFF30]/50 transition-all"
+                >
+                    <span class="text-[#FFFF30] text-sm">name:</span>
+                    <input
+                        name="name"
+                        type="text"
+                        placeholder='"John Doe"'
+                        class="bg-transparent border-none outline-none text-white text-sm w-full placeholder:text-zinc-700"
+                    />
+                </div>
+            </div>
+
+            <div class="hidden">
+                <label
+                    >Don't fill this out if you're human: <input
+                        name="_gotcha"
+                    /></label
+                >
+            </div>
+
+            <button
+                type="submit"
+                class="w-full md:w-auto px-10 py-4 bg-[#FFFF30] text-black font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all"
+            >
+                execute ./transmit.sh
+            </button>
+        </form>
+    </main>
 </Layout>
