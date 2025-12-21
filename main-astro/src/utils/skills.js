@@ -5,8 +5,8 @@ const categories = [
     comment: "// high_performance_engines"
   },
   {
-    group: "Frameworks",
-    items: ["Astro", "Spring Boot", "React.js", "Flutter", "FastAPI", ".NET", "Node.js", "Tauri"],
+    group: "Frameworks/Libraries",
+    items: ["Astro", "Svelte", "Tailwind", "Spring Boot", "React.js", "Flutter", "FastAPI", ".NET", "Node.js", "Tauri"],
     comment: "// application_architecture"
   },
   {
@@ -16,12 +16,12 @@ const categories = [
   },
   {
     group: "Cloud_DevOps",
-    items: ["Azure", "AWS", "Docker", "Kubernetes", "Git"],
+    items: ["Azure", "AWS", "Render", "Docker", "Kubernetes", "Git"],
     comment: "// infrastructure_as_code"
   },
   {
     group: "Data_Service",
-    items: ["Postgres", "MongoDB", "Redis", "Kafka", "GraphQL", "JWT"],
+    items: ["Postgres", "MongoDB", "Supabase", "Redis", "Kafka", "GraphQL", "JWT"],
     comment: "// persistent_storage"
   },
   {
