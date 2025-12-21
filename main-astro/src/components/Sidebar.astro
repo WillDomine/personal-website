@@ -36,22 +36,22 @@ const pathName = Astro.url.pathname;
 
 <div 
     id="sidebar-overlay" 
-    class="fixed inset-0 bg-black/70 z-[40] hidden lg:hidden transition-opacity"
+    class="fixed inset-0 bg-black/70 z-40 hidden lg:hidden transition-opacity"
 ></div>
 
 <aside
     id="sidebar"
-    class="fixed lg:sticky top-0 left-0 z-[50] w-64 h-screen bg-[#25282a] border-r border-black transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0"
+    class="fixed lg:sticky top-0 left-0 z-50 w-64 h-screen bg-[#25282a] border-r border-black transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0"
 >
     <div class="p-5 font-mono h-full flex flex-col">
-        <div class="flex items-center justify-between text-2xl font-bold text-[#FFFFF0] px-3">
+        <div class="hidden lg:flex items-center justify-between text-2xl font-bold text-[#FFFFF0] px-3">
             <h1>Portfolio</h1>
-            <button id="close-sidebar" class="lg:hidden text-slate-400 hover:text-white">
+            <button id="close-sidebar" class="lg:hidden text-[#FFFFF0] hover:text-white">
                 <X size={24} />
             </button>
         </div>
         
-        <nav class="mt-10 space-y-1">
+        <nav class="mt-15 lg:mt-10 space-y-1">
             {
                 navItems.map((item) => (
                     <a
@@ -93,20 +93,24 @@ const pathName = Astro.url.pathname;
             document.body.style.overflow = '';
         }
 
-        menuToggle.addEventListener('click', open);
+        menuToggle.addEventListener('click', () => {
+            const isOpen = !sidebar.classList.contains('-translate-x-full');
+            if (isOpen) {
+                close();
+            } else {
+                open();
+            }
+        });
+
         if (closeToggle) closeToggle.addEventListener('click', close);
         overlay.addEventListener('click', close);
 
-        // Auto-close on link click (mobile)
         const links = sidebar.querySelectorAll('a');
         links.forEach(l => l.addEventListener('click', () => {
             if (window.innerWidth < 1024) close();
         }));
     }
 
-    // Run on initial load
     setupSidebar();
-    
-    // Run on Astro page navigation (if using View Transitions)
     document.addEventListener('astro:after-swap', setupSidebar);
 </script>
